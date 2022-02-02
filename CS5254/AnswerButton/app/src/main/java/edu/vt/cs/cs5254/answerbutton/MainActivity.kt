@@ -1,14 +1,12 @@
 package edu.vt.cs.cs5254.answerbutton
 
+
 import android.content.res.ColorStateList
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
-import android.widget.LinearLayout
 import androidx.core.view.children
-import androidx.core.view.get
 import edu.vt.cs.cs5254.answerbutton.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -55,10 +53,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.questionTextView.setText(R.string.australia_question)
 
-        // TODO Use pairs and a zipped list instead of 0..3
-        for (index in 0..3) {
-            answerButtonList[index].setText(answerList[index].textResId)
-        }
+        answerButtonList.zip(answerList).forEach {(button, answer) -> button.setText(answer.textResId)}
 
         binding.disableButton.setText(R.string.disable_button)
         binding.resetButton.setText(R.string.reset_button)
@@ -67,12 +62,12 @@ class MainActivity : AppCompatActivity() {
         // Add listeners to buttons
         // ------------------------------------------------------
 
-        // TODO Use pairs and a zipped list instead of 0..3
-        for (index in 0..3) {
-            answerButtonList[index].setOnClickListener {
-                processAnswerButtonClick(answerList[index])
+        answerButtonList.zip(answerList).forEach { (button, answer) ->
+            button.setOnClickListener {
+                processAnswerButtonClick(answer)
             }
         }
+
         binding.disableButton.setOnClickListener {
             processDisableButtonClick()
         }
@@ -88,54 +83,35 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun processAnswerButtonClick(clickedAnswer: Answer) {
-
         val origIsSelected = clickedAnswer.isSelected
-        // TODO Use forEach instead of for loop
-        for (answer in answerList) {
-            answer.isSelected = false
-        }
+        answerList.forEach { answer -> !answer.isSelected }
         clickedAnswer.isSelected = !origIsSelected
 
         refreshView()
     }
 
     private fun processDisableButtonClick() {
-
-        // TODO Use list functions (filter/take/forEach) instead of for loop
-        var count = 0
-        for (answer in answerList) {
-            if (!answer.isCorrect) {
+        answerList.filter { answer -> !answer.isCorrect }
+            .take(2).forEach { answer ->
                 answer.isEnabled = false
-                answer.isSelected = false // deselect when answer is disabled
-                count++
-                if (count == 2) {
-                    break
-                }
+                answer.isSelected = false
             }
-        }
 
         refreshView()
     }
 
     private fun processResetButtonClick() {
-
-        // TODO use forEach instead of for loop
-        for (answer in answerList) {
+        answerList.forEach { answer ->
             answer.isEnabled = true
             answer.isSelected = false
         }
-
         refreshView()
     }
 
     private fun refreshView() {
-
         binding.disableButton.isEnabled = true
 
-        // TODO Use pairs and a zipped list instead of 0..3
-        for (index in 0..3) {
-            val answer = answerList[index]
-            val button = answerButtonList[index]
+        answerButtonList.zip(answerList).forEach { (button, answer) ->
             button.isEnabled = answer.isEnabled
             button.isSelected = answer.isSelected
             if (answer.isSelected) {

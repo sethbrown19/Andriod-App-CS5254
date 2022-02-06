@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">MultiQuiz</string>
+    <string name="question_text">Question</string>
+    <string name="answer_0_button">Answer 0</string>
+    <string name="answer_1_button">Answer 1</string>
+    <string name="answer_2_button">Answer 2</string>
+    <string name="answer_3_button">Answer 3</string>
+    <string name="hint_button">Hint</string>
+    <string name="submit_button">Submit</string>
+
+    <string name="us_question">What is the capital of the US</string>
+    <string name="us_answer_dallas">Dallas</string>
+    <string name="us_answer_dc">DC</string>
+    <string name="us_answer_desmoines">Des Moines</string>
+    <string name="us_answer_seattle">Seattle</string>
+
+    <string name="ocean_question">What is the biggest ocean?</string>
+    <string name="ocean_answer_atlantic">Atlantic</string>
+    <string name="ocean_answer_pacific">Pacific</string>
+    <string name="ocean_answer_indian">India</string>
+    <string name="ocean_answer_arctic">Arctic</string>
+
+    <string name="state_question">What is the most populated US city?</string>
+    <string name="state_answer_ny">New York</string>
+    <string name="state_answer_orland">Orlando</string>
+    <string name="state_answer_blacksburg">Blacksburg</string>
+    <string name="state_answer_sf">Sante Fe</string>
+
+    <string name="president_question">Who is the President of the USA?</string>
+    <string name="pres_answer_biden">Joe Biden</string>
+    <string name="pres_answer_washington">George Washington</string>
+    <string name="pres_answer_kennedy">John F Kennedy</string>
+    <string name="pres_answer_goofy">Goofy Goof</string>
+
+</resources>

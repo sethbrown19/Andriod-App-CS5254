@@ -1,4 +1,4 @@
-package edu.vt.cs.cs5254.answerbutton
+package edu.vt.cs.cs5254.multiquiz
 
 
 import android.content.res.ColorStateList
@@ -8,7 +8,8 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.children
 import androidx.lifecycle.ViewModelProvider
-import edu.vt.cs.cs5254.answerbutton.databinding.ActivityQuizBinding
+import multiquiz.R
+import multiquiz.databinding.ActivityQuizBinding
 
 class QuizActivity : AppCompatActivity() {
 
@@ -60,24 +61,6 @@ class QuizActivity : AppCompatActivity() {
         ui.submitButton.setText(R.string.submit_button)
         updateQuestion()
 
-//        // ------------------------------------------------------
-//        // Add listeners to buttons
-//        // ------------------------------------------------------
-//
-//        answerButtonList.zip(vm.answerList).forEach { (button, answer) ->
-//            button.setOnClickListener {
-//                processAnswerButtonClick(answer)
-//            }
-//        }
-//
-//
-//        ui.hintButton.setOnClickListener {
-//            processHintButtonClick()
-//        }
-//        ui.submitButton.setOnClickListener {
-//            processSubmitButtonClick()
-//        }
-
         // ------------------------------------------------------
         // Refresh the view
         // ------------------------------------------------------
@@ -103,6 +86,7 @@ class QuizActivity : AppCompatActivity() {
         }
         ui.submitButton.setOnClickListener {
             processSubmitButtonClick()
+
         }
     }
 
@@ -133,6 +117,8 @@ class QuizActivity : AppCompatActivity() {
     private fun processSubmitButtonClick() {
         vm.gotoNextQuestion()
         updateQuestion()
+//        val intent = Intent(this, ResultsActivity::class.java)
+//        startActivity(intent)
 
         for (answer in vm.answerList) {
             answer.isEnabled = true

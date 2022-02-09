@@ -7,6 +7,18 @@
     tools:context=".QuizActivity">
 
     <TextView
+        android:id="@+id/textView4"
+        android:layout_width="82dp"
+        android:layout_height="20dp"
+        android:text="@string/seth_name"
+        app:layout_constraintBottom_toTopOf="@+id/question_text_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <TextView
         android:id="@+id/question_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,11 +33,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/question_text_view"
         app:layout_constraintBottom_toTopOf="@+id/function_buttons"
-        >
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/question_text_view">
 
         <Button
             android:id="@+id/answer_0_button"
@@ -62,10 +73,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/answer_buttons"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/answer_buttons">
 
         <Button
             android:id="@+id/hint_button"
@@ -74,6 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/hint_button" />
+
         <Button
             android:id="@+id/submit_button"
             style="?android:buttonStyle"
@@ -84,5 +96,6 @@
 
 
     </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

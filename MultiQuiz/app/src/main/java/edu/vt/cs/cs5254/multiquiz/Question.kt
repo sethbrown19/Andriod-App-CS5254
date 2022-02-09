@@ -1,4 +1,4 @@
-package edu.vt.cs.cs5254.answerbutton
+package edu.vt.cs.cs5254.multiquiz
 
 import androidx.annotation.StringRes
 

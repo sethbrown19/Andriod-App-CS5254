@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.vt.cs.cs5254.answerbutton">
+    package="multiquiz">
 
     <application
         android:allowBackup="true"
@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AnswerButton">
         <activity
-            android:name=".Results"
+            android:name="edu.vt.cs.cs5254.multiquiz.ResultsActivity"
             android:exported="false" />
         <activity
-            android:name=".QuizActivity"
+            android:name="edu.vt.cs.cs5254.multiquiz.QuizActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

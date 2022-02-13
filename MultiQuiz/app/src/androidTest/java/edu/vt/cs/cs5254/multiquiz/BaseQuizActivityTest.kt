@@ -162,11 +162,11 @@ class BaseQuizActivityTest {
         onView(withId(R.id.submit_button))
             .perform(click())
         // you should now be in the report activity
-//        onView(withId(R.id.total_questions_value))
-//            .check(matches(withText("4")))
-//        onView(withId(R.id.total_answers_correct_value))
-//            .check(matches(withText("4")))
-//        onView(withId(R.id.total_hints_used_value))
-//            .check(matches(withText("0")))
+        onView(withId(R.id.total_questions_value))
+            .check(matches(withText("4")))
+        onView(withId(R.id.total_answers_correct_value))
+            .check(matches(withText("4")))
+        onView(withId(R.id.total_hints_used_value))
+            .check(matches(withText("0")))
     }
 }

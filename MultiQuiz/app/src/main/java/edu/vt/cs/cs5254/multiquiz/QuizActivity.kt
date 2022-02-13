@@ -1,6 +1,6 @@
 package edu.vt.cs.cs5254.multiquiz
 
-
+import android.content.ClipData.newIntent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -15,7 +15,7 @@ class QuizActivity : AppCompatActivity() {
 
     private val DEFAULT_BUTTON_COLOR = "Purple"
     private val SELECTED_BUTTON_COLOR = "Green"
-    private var hintPressedCount = 0
+//    private var hintPressedCount = 0
 
     lateinit var ui : ActivityQuizBinding
 
@@ -55,8 +55,6 @@ class QuizActivity : AppCompatActivity() {
 
         answerButtonList.zip(vm.answerList).forEach {(button, answer) -> button.setText(answer.textResId)}
 
-
-
         ui.hintButton.setText(R.string.hint_button)
         ui.submitButton.setText(R.string.submit_button)
         updateQuestion()
@@ -69,30 +67,26 @@ class QuizActivity : AppCompatActivity() {
         refreshView()
     }
 
+    // ------------------------------------------------------
+    // Add listeners to buttons
+    // ------------------------------------------------------
     private fun updateQuestion() {
-        // ------------------------------------------------------
-        // Add listeners to buttons
-        // ------------------------------------------------------
-
         answerButtonList.zip(vm.answerList).forEach { (button, answer) ->
             button.setOnClickListener {
                 processAnswerButtonClick(answer)
             }
         }
-
         ui.hintButton.setOnClickListener {
             processHintButtonClick()
-            ui.submitButton.isEnabled = false
         }
         ui.submitButton.setOnClickListener {
             processSubmitButtonClick()
-
         }
     }
 
     private fun processAnswerButtonClick(clickedAnswer: Answer) {
         val origIsSelected = clickedAnswer.isSelected
-        vm.answerList.forEach { answer -> !answer.isSelected }
+        vm.answerList.forEach { it.isSelected = false }
         clickedAnswer.isSelected = !origIsSelected
         ui.submitButton.isEnabled = clickedAnswer.isSelected // enable submit if an answer is chosen
 
@@ -100,33 +94,30 @@ class QuizActivity : AppCompatActivity() {
     }
 
     private fun processHintButtonClick() {
-        val randomAnswer = vm.answerList
-            .filter { it.isEnabled }
-            .filterNot { it.isCorrect}
-            .random()
-
-        randomAnswer.isEnabled = false
-        randomAnswer.isSelected = false
-
-        hintPressedCount += 1
-        ui.hintButton.isEnabled = hintPressedCount < 3
-
+        vm.giveHint()
         refreshView()
     }
 
     private fun processSubmitButtonClick() {
+        val selectedAnswer = vm.answerList.first() { it.isSelected }
+        if (selectedAnswer.isCorrect) {
+            vm.correctCount++
+        }
+        if(vm.noMoreQuestions()) {
+            val intent = ResultsActivity.newIntent(
+                this@QuizActivity, vm.questionIndex + 1,
+                vm.hintCount,
+                vm.correctCount
+            )
+            startActivity(intent)
+        }
         vm.gotoNextQuestion()
         updateQuestion()
-//        val intent = Intent(this, ResultsActivity::class.java)
-//        startActivity(intent)
 
         for (answer in vm.answerList) {
             answer.isEnabled = true
             answer.isSelected = false
         }
-        hintPressedCount = 0 // set count back to zero and enable hint button on page switch
-        ui.hintButton.isEnabled = true
-
         refreshView()
     }
 
@@ -136,17 +127,20 @@ class QuizActivity : AppCompatActivity() {
         // ------------------------------------------------------
         // Set text of question and answer buttons
         // ------------------------------------------------------
-
+        if(vm.hintCount == 3) {
+            ui.hintButton.isEnabled = false
+        }
+        ui.submitButton.isEnabled = false
         ui.questionTextView.setText(vm.questionText)
 
         answerButtonList.zip(vm.answerList).forEach {(button, answer) -> button.setText(answer.textResId)}
-
 
         answerButtonList.zip(vm.answerList).forEach { (button, answer) ->
             button.isEnabled = answer.isEnabled
             button.isSelected = answer.isSelected
             if (answer.isSelected) {
                 setButtonColor(button, SELECTED_BUTTON_COLOR)
+                ui.submitButton.isEnabled = true
             } else {
                 setButtonColor(button, DEFAULT_BUTTON_COLOR)
             }

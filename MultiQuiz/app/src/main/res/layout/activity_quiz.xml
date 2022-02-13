@@ -7,18 +7,6 @@
     tools:context=".QuizActivity">
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="82dp"
-        android:layout_height="20dp"
-        android:text="@string/seth_name"
-        app:layout_constraintBottom_toTopOf="@+id/question_text_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
-
-    <TextView
         android:id="@+id/question_text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

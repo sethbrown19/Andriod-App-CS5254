@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import multiquiz.R
 
 class QuizViewModel : ViewModel() {
+    var hintCount = 0
+    var correctCount = 0
 
     private val questionBank = listOf(
         Question(
@@ -40,15 +42,42 @@ class QuizViewModel : ViewModel() {
         )
     )
 
-    private var questionIndex = 0
+    var questionIndex = 0
 
     val questionText
         get() = questionBank[questionIndex].textRedId
     val answerList
         get() = questionBank[questionIndex].answerList
+    fun noMoreQuestions() = questionIndex == questionBank.size - 1
     fun gotoNextQuestion() {
         questionIndex = (questionIndex + 1) % questionBank.size
     }
+
+    fun selectAnswer(answer: Answer) {
+        val wasSelected = answer.isSelected
+        for(a in answerList) {
+            a.isSelected = false
+        }
+    }
+    fun giveHint() {
+        val answerToHide = answerList
+            .filterNot { it.isCorrect }
+            .filter { it.isEnabled }
+            .shuffled()
+            .first()
+        answerToHide.isEnabled = false
+        answerToHide.isSelected = false
+        hintCount++
+
+    }
+
+    fun resetAnswers() {
+        answerList.forEach {
+            it.isEnabled
+            !it.isSelected
+        }
+    }
+
 
 
 }

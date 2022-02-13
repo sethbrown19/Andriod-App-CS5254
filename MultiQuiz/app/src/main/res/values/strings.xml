@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">MultiQuiz</string>
-    <string name="seth_name">Seth Brown</string>
     <string name="question_text">Question</string>
     <string name="answer_0_button">Answer 0</string>
     <string name="answer_1_button">Answer 1</string>
@@ -18,7 +17,7 @@
     <string name="ocean_question">What is the biggest ocean?</string>
     <string name="ocean_answer_atlantic">Atlantic</string>
     <string name="ocean_answer_pacific">Pacific</string>
-    <string name="ocean_answer_indian">India</string>
+    <string name="ocean_answer_indian">Indian</string>
     <string name="ocean_answer_arctic">Arctic</string>
 
     <string name="state_question">What is the most populated US city?</string>
@@ -32,7 +31,11 @@
     <string name="pres_answer_washington">George Washington</string>
     <string name="pres_answer_kennedy">John F Kennedy</string>
     <string name="pres_answer_goofy">Goofy Goof</string>
-    <string name="correct_answers">Correct Answers </string>
+
+    <string name="results_title">Results</string>
+    <string name="total_questions">Total questions: </string>
+    <string name="total_answers_correct">Total correct: </string>
+    <string name="total_hints_used">Hints used: </string>
 
 
 </resources>

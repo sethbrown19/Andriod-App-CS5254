@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">DreamCatcher</string>
+
+<!-- resources for dream detail fragment -->
+    <string name="dream_title_label">Title</string>
+    <string name="dream_title_text">Change the title of your dream.</string>
+    <string name="dream_fulfilled_checkbox">Fulfilled</string>
+    <string name="dream_deferred_checkbox">Deferred</string>
+    <string name="dream_entries_label">Dream Entries</string>
+    <string name="dream_entry_0_button">Conceived</string>
+    <string name="dream_entry_1_button">Entry 1</string>
+    <string name="dream_entry_2_button">Entry 2</string>
+    <string name="dream_entry_3_button">Entry 3</string>
+    <string name="dream_entry_4_button">Fulfilled</string>
+
+<!-- resource for list item dream -->
+    <string name="dream_item_title">Dream Title</string>
+    <string name="dream_item_date">Dream Date</string>
+    <string name="dream_item_image">Fulfilled or Deferred</string>
+</resources>

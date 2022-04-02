@@ -14,20 +14,20 @@
         style="?android:listSeparatorTextViewStyle"
         android:layout_width="match_parent"
         android:layout_height="52dp"
-        android:textSize="20dp"
-        android:textColor="@color/black"
         android:text="@string/dream_title_label"
+        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/dream_title_text"
         android:layout_width="match_parent"
         android:layout_height="62dp"
-        android:textSize="20dp"
-        android:textColor="@color/black"
         android:hint="@string/dream_title_text"
         android:inputType="text"
+        android:textColor="@color/black"
         android:textColorHint="#757575"
+        android:textSize="20dp"
         app:layout_constraintTop_toBottomOf="@+id/dream_title_label"
         tools:layout_editor_absoluteX="0dp" />
 
@@ -69,8 +69,8 @@
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="2dp"
         android:backgroundTint="@color/royal_blue"
-        android:textStyle="bold"
         android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/dream_entries_label"
         tools:layout_editor_absoluteX="16dp"
         tools:text="@string/dream_entry_0_button" />
@@ -125,6 +125,17 @@
         app:layout_constraintTop_toBottomOf="@+id/dream_entry_3_button"
         tools:layout_editor_absoluteX="16dp"
         tools:text="@string/dream_entry_4_button" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_reflection_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginBottom="20dp"
+        android:clickable="true"
+        android:src="@android:drawable/ic_input_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

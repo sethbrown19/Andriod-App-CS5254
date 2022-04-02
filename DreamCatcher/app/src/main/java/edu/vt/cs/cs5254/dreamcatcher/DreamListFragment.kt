@@ -1,19 +1,21 @@
 package edu.vt.cs.cs5254.dreamcatcher
 
 import android.content.Context
+import androidx.lifecycle.Observer
 import android.os.Bundle
 import android.text.format.DateFormat
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.vt.cs.cs5254.dreamcatcher.databinding.FragmentDreamListBinding
 import edu.vt.cs.cs5254.dreamcatcher.databinding.ListItemDreamBinding
 import java.util.*
 
+
+private const val TAG = "Dream"
 class DreamListFragment : Fragment() {
 
     interface Callbacks {
@@ -23,14 +25,17 @@ class DreamListFragment : Fragment() {
     private var callbacks: Callbacks? = null
     private var _binding: FragmentDreamListBinding? = null
     private val binding get() = _binding!!
-    private var adapter: DreamAdapter? = null
-    private val viewModel: DreamListViewModel by lazy {
-        ViewModelProvider(this).get(DreamListViewModel::class.java)
-    }
+    private lateinit var adapter: DreamAdapter
+    private val viewModel : DreamListViewModel by viewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
         callbacks = context as Callbacks?
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
@@ -40,16 +45,48 @@ class DreamListFragment : Fragment() {
     ): View? {
         _binding = FragmentDreamListBinding.inflate(layoutInflater, container, false)
         val view = binding.root
-        binding.root.layoutManager = LinearLayoutManager(context)
+        binding.dreamRecyclerView.layoutManager = LinearLayoutManager(context)
 
-        updateUI()
         return view
     }
 
-    private fun updateUI() {
-        val dreams = viewModel.dreams
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.fragment_dream_list, menu)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.add_dream -> {
+                var dreamWithEntries = DreamWithEntries(Dream(), listOf())
+                viewModel.addDreamEntries(dreamWithEntries)
+                callbacks?.onDreamSelected(dreamWithEntries.dream.id)
+                true
+            }
+            R.id.delete_all_dreams -> {
+                viewModel.deleteAllDreams()
+                true
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun updateUI(dreams : List<Dream>) {
         adapter = DreamAdapter(dreams)
-        binding.root.adapter = adapter
+        binding.dreamRecyclerView.adapter = adapter
+    }
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.dreamListLiveData.observe (
+            viewLifecycleOwner,
+            Observer { dreams ->
+                dreams?.let {
+                    Log.i(TAG, "Got dreams ${dreams.size}")
+                    updateUI(dreams)
+                }
+            }
+        )
     }
 
     inner class DreamHolder(val itemBinding: ListItemDreamBinding) :

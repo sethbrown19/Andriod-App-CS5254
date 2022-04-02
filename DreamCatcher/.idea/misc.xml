@@ -4,9 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_dream_detail.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/dialog_add_reflection.xml" value="0.18064516129032257" />
+        <entry key="app/src/main/res/layout/fragment_dream_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_dream_list.xml" value="0.21853388658367912" />
         <entry key="app/src/main/res/layout/list_item_dream.xml" value="0.22" />
+        <entry key="app/src/main/res/menu/fragment_dream_list.xml" value="0.20495452880859372" />
       </map>
     </option>
   </component>

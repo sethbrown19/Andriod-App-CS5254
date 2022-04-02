@@ -1,22 +1,27 @@
 package edu.vt.cs.cs5254.dreamcatcher
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
-import java.lang.IllegalArgumentException
 import java.util.*
 
 class DreamDetailViewModel : ViewModel() {
 
     private val dreamRepository = DreamRepository.get()
-    lateinit var dream: Dream
-    lateinit var dreamWithEntries: DreamWithEntries
+    private val dreamIdLiveData = MutableLiveData<UUID>()
+
+    var dreamLiveData: LiveData<DreamWithEntries> =
+        Transformations.switchMap(dreamIdLiveData) { dreamId ->
+            dreamRepository.getDreamWithEntries(dreamId)
+        }
 
     fun loadDream(dreamId: UUID) {
-        dreamWithEntries = dreamRepository.getDreamWithEntries(dreamId) ?: throw IllegalArgumentException("Dream $dreamId not found")
-        dream = dreamWithEntries.dream
+        dreamIdLiveData.value = dreamId
     }
 
-
-
-
+    fun saveDreamWithEntries(dreamWithEntries: DreamWithEntries) {
+        dreamRepository.updateDreamWithEntries(dreamWithEntries)
+    }
 
 }

@@ -9,4 +9,6 @@ data class DreamWithEntries(
         parentColumn = "id",
         entityColumn = "dreamId"
     ) var dreamEntries: List<DreamEntry>
-)
+) {
+    val photoFileName get() = "IMG_$dream.id.jpg"
+}

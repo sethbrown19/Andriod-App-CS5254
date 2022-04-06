@@ -3,7 +3,7 @@
 
 <!-- resources for dream detail fragment -->
     <string name="dream_title_label">Title</string>
-    <string name="dream_title_text">Change the title of your dream.</string>
+    <string name="dream_title_text">Enter the title of your dream.</string>
     <string name="dream_fulfilled_checkbox">Fulfilled</string>
     <string name="dream_deferred_checkbox">Deferred</string>
     <string name="dream_entries_label">Dream Entries</string>
@@ -13,8 +13,26 @@
     <string name="dream_entry_3_button">Entry 3</string>
     <string name="dream_entry_4_button">Fulfilled</string>
 
-<!-- resource for list item dream -->
+<!-- resources for list item dream -->
     <string name="dream_item_title">Dream Title</string>
     <string name="dream_item_date">Dream Date</string>
     <string name="dream_item_image">Fulfilled or Deferred</string>
+    <string name="new_dream">Add New Dream</string>
+    <string name="delete_all_dreams">Delete All Dreams</string>
+
+<!-- resources for image and send dream report -->
+    <string name="crime_suspect_text">Choose Suspect</string>
+    <string name="crime_report_text">Send Crime Report</string>
+    <string name="dream_report">%1$s!
+The dream was discovered on %2$s. %3$s, and %4$s
+</string>
+    <string name="dream_report_fulfilled">The dream is fulfilled</string>
+    <string name="dream_report_deferred">The dream is deferred</string>
+    <string name="crime_report_no_suspect">there is no suspect.</string>
+    <string name="crime_report_suspect">the suspect is %s.</string>
+    <string name="dream_report_subject">DreamCatcher Dream Report</string>
+    <string name="send_report">Send dream report via</string>
+    <string name="share_dream">Share Dream</string>
+
+
 </resources>

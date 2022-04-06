@@ -5,11 +5,11 @@
     <item
         android:id="@+id/add_dream"
         android:icon="@drawable/ic_icon_add_foreground"
-        android:title="New Dream"
+        android:title="@string/new_dream"
         app:showAsAction="ifRoom|withText" />
     <item
         android:id="@+id/delete_all_dreams"
         android:icon="@drawable/ic_icon_delete_forever"
-        android:title="Delete All Dreams"
+        android:title="@string/delete_all_dreams"
         app:showAsAction="ifRoom|withText" />
 </menu>

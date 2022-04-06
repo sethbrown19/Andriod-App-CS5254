@@ -1,13 +1,13 @@
 package edu.vt.cs.cs5254.dreamcatcher
 
 import android.content.Context
-import androidx.lifecycle.Observer
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import edu.vt.cs.cs5254.dreamcatcher.databinding.FragmentDreamListBinding
@@ -16,6 +16,7 @@ import java.util.*
 
 
 private const val TAG = "Dream"
+
 class DreamListFragment : Fragment() {
 
     interface Callbacks {
@@ -26,7 +27,7 @@ class DreamListFragment : Fragment() {
     private var _binding: FragmentDreamListBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter: DreamAdapter
-    private val viewModel : DreamListViewModel by viewModels()
+    private val viewModel: DreamListViewModel by viewModels()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -46,7 +47,6 @@ class DreamListFragment : Fragment() {
         _binding = FragmentDreamListBinding.inflate(layoutInflater, container, false)
         val view = binding.root
         binding.dreamRecyclerView.layoutManager = LinearLayoutManager(context)
-
         return view
     }
 
@@ -54,6 +54,7 @@ class DreamListFragment : Fragment() {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.fragment_dream_list, menu)
     }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.add_dream -> {
@@ -70,7 +71,7 @@ class DreamListFragment : Fragment() {
         }
     }
 
-    private fun updateUI(dreams : List<Dream>) {
+    private fun updateUI(dreams: List<Dream>) {
         adapter = DreamAdapter(dreams)
         binding.dreamRecyclerView.adapter = adapter
     }
@@ -78,7 +79,7 @@ class DreamListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.dreamListLiveData.observe (
+        viewModel.dreamListLiveData.observe(
             viewLifecycleOwner,
             Observer { dreams ->
                 dreams?.let {
@@ -88,6 +89,7 @@ class DreamListFragment : Fragment() {
             }
         )
     }
+
 
     inner class DreamHolder(val itemBinding: ListItemDreamBinding) :
         RecyclerView.ViewHolder(itemBinding.root), View.OnClickListener {
@@ -152,7 +154,6 @@ class DreamListFragment : Fragment() {
         }
     }
 
-    // DreamHolder && DreamAdapter
     companion object {
         fun newInstance(): DreamListFragment {
             return DreamListFragment()

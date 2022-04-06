@@ -4,12 +4,15 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
+import java.io.File
 import java.util.UUID
 import java.util.concurrent.Executors
 
 private const val DATABASE_NAME = "dream_database"
 
 class DreamRepository private constructor(context: Context) {
+
+
 
     private val initializeDreamDatabaseCallback: RoomDatabase.Callback =
         object : RoomDatabase.Callback() {
@@ -32,6 +35,8 @@ class DreamRepository private constructor(context: Context) {
 
     private val dreamDao = database.dreamDao()
     private val executor = Executors.newSingleThreadExecutor()
+    private val filesDir = context.applicationContext.filesDir
+    fun getPhotoFile(dreamWithEntries: DreamWithEntries): File = File(filesDir, dreamWithEntries.photoFileName)
 
     fun getDreams() = dreamDao.getDreams()
 

@@ -5,7 +5,9 @@
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_photo_gallery.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_photo_page.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_photo_gallery.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/fragment_photo_page.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_item_gallery.xml" value="0.1" />
       </map>
     </option>
